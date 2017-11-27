@@ -7,8 +7,7 @@ import {IndexComponent} from './index/index.component';
 
 @NgModule({
     imports:        [BrowserModule, CommonModule],
-    declarations:   [AppComponent, IndexComponent],
-    bootstrap:      [AppComponent]
+    declarations:   [AppComponent, IndexComponent]
 })
 
 export class AppModule {}

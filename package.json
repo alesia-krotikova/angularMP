@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "angular",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --port 8080"
+    "start": "webpack --watch --hot --config=webpack.dev.config.js",
+    "build": "webpack --config=webpack.prod.config.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/core-js": "0.9.35",
     "ts-loader": "2.0.1",
+    "tslint-config-standard": "^7.0.0",
     "typescript": "2.2.1",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.1"

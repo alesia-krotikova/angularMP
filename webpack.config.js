@@ -16,8 +16,7 @@ module.exports = {
     "app": "./app/main"
   },
   output: {
-    path: __dirname,
-    filename: "./dist/[name].bundle.js"
+    path: __dirname
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -26,7 +25,6 @@ module.exports = {
       'node_modules'
     ]
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -48,11 +46,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
-    }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      sourceMap: true
     })
   ]
 };
