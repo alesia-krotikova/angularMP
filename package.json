@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "angular",
   "scripts": {
-    "start": "webpack --watch --hot --config=webpack.dev.config.js",
+    "start": "webpack-dev-server --port 3000 --watch --hot --config=webpack.dev.config.js",
     "build": "webpack --config=webpack.prod.config.js"
   },
   "license": "ISC",
