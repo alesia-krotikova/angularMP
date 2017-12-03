@@ -1,13 +1,17 @@
-import {NgModule}      from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import {AppComponent}  from './app.component';
-import {IndexComponent} from './index/index.component';
+import {AppComponent} from './app.component';
+import {CardComponent} from './card/card.component';
+import {SearchComponent} from "./search/search.component";
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
 
 @NgModule({
-    imports:        [BrowserModule, CommonModule],
-    declarations:   [AppComponent, IndexComponent],
+    imports:        [BrowserModule, CommonModule, FormsModule],
+    declarations:   [AppComponent, HeaderComponent, CardComponent, SearchComponent, FooterComponent],
     bootstrap:      [AppComponent]
 })
 

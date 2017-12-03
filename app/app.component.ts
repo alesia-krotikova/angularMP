@@ -1,10 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CARDS} from 'mock';
 
 @Component({
-    selector: 'my-app',
-    template: `
-        <h1>My First Angular 2 App</h1>
-        <app-index></app-index>
-    `
+    selector: 'courses-page',
+    templateUrl: '/app/app.component.html',
+    styleUrls: ['/app/app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+    cards = CARDS;
+
+    onChanged(id: string) {
+        console.log(`course id should be deleted: ${id}`);
+    }
+
+    constructor() {}
+
+    ngOnInit() {}
+}
