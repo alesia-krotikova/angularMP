@@ -1,0 +1,21 @@
+@import 'header/header.component.css';
+@import 'search/search.component.css';
+@import 'card/card.component.css';
+@import 'footer/footer.component.css';
+
+courses-page {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    width: 70%;
+}
+
+.cards {
+    flex: 1;
+}
+
+.button {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px;
+}

@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-logo {
+    display: flex;
+    flex-grow: 1;
+}
+
+.logo-img {
+    width: 150px;
+    height: 150px;
+}
+
+.logo-heading {
+    font-size: 32px;
+    color: #dd0330;
+    font-weight: 700;
+    align-self: center;
+}
+
+.header-login {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.login-user {
+    font-size: 22px;
+    line-height: 44px;
+}

@@ -1,0 +1,14 @@
+.search {
+    display: flex;
+    padding: 20px 0;
+}
+
+.search-input {
+    flex: 6;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.search .button {
+    flex: 1;
+}
