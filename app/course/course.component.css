@@ -1,0 +1,41 @@
+.courses-item {
+    border: 1px solid #9f9f9f;
+    margin: 10px 0;
+    padding: 20px;
+}
+
+app-course {
+    display: flex;
+}
+
+.item-content {
+    flex: 6;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0 0 20px;
+}
+
+.item-heading {
+    font-size: 28px;
+    flex: 1;
+}
+
+.item-duration {
+    padding-right: 20px;
+}
+
+.item-date {
+    font-weight: 700;
+}
+
+.item-controls {
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+    padding-left: 20px;
+    justify-content: space-between;
+}
