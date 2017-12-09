@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Card} from '../card';
+import {Course} from '../course';
 
 @Component({
     selector: 'app-footer',

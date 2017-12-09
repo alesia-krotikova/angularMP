@@ -1,0 +1,14 @@
+<div class="item-content">
+    <div class="content-header">
+        <h2 class="item-heading">{{course.title}}</h2>
+        <span class="item-duration">{{course.duration}}min</span>
+        <span class="item-date">{{course.creatingDate| date: "MM.dd.yy"}}</span>
+    </div>
+    <div class="content-description">
+        <p class="description-text">{{course.description}}</p>
+    </div>
+</div>
+<div class="item-controls">
+    <button class="button course-edit">Edit course</button>
+    <button class="button course-delete" on-click="delete(course.id)">Delete course</button>
+</div>

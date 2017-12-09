@@ -1,6 +1,6 @@
-import {Card} from './card';
+import {Course} from './course';
 
-export const CARDS: Card[] = [
+export const COURSES: Course[] = [
     {
         id: 1,
         title: 'Course #1',

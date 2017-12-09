@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CARDS} from 'mock';
+import {COURSES} from 'mock';
 
 @Component({
     selector: 'courses-page',
@@ -7,9 +7,9 @@ import {CARDS} from 'mock';
     styleUrls: ['/app/app.component.css']
 })
 export class AppComponent {
-    cards = CARDS;
+    courses = COURSES;
 
-    onChanged(id: string) {
+    change(id: string) {
         console.log(`course id should be deleted: ${id}`);
     }
 
