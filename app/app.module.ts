@@ -8,10 +8,14 @@ import {CourseComponent} from 'course/course.component';
 import {SearchComponent} from "./search/search.component";
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
+import {CourseService} from './course.service'
+import {AuthorizationService} from "./authorization.service";
+import {LoginModule} from "./login/login.module";
 
 @NgModule({
-    imports:        [BrowserModule, CommonModule, FormsModule],
+    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule],
     declarations:   [AppComponent, HeaderComponent, CourseComponent, SearchComponent, FooterComponent],
+    providers:      [CourseService, AuthorizationService],
     bootstrap:      [AppComponent]
 })
 

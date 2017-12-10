@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Input, Output} from '@angular/core';
 import {Course} from '../course';
+import {CourseService} from "../course.service";
 
 @Component({
     selector: 'app-course',
@@ -9,13 +10,15 @@ import {Course} from '../course';
 
 export class CourseComponent implements OnInit {
     @Input() course: Course;
-    @Output() change = new EventEmitter<string> ();
+    @Output() remove = new EventEmitter<number> ();
 
-    delete (id: string) {
-        this.change.emit(id);
+    courses: Course[];
+
+    constructor(private courseService: CourseService) {}
+
+    deleteCourse(id: number) {
+        this.remove.emit(id);
     }
-
-    constructor() {}
 
     ngOnInit() {}
 }
