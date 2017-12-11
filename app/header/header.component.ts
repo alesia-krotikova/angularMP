@@ -10,20 +10,23 @@ import {AuthorizationService} from "../authorization.service";
 export class HeaderComponent implements OnInit {
     logoPath: string;
     logoText: string;
-    currentUserName: string;
-    isLogin: boolean;
 
     constructor(private authorizationService: AuthorizationService) {
         this.logoPath = '/images/logo.png';
         this.logoText = 'Angular Courses';
-        this.currentUserName = 'Alesia Krotikova';
     }
 
-    ngOnInit() {
-        this.isLogin = this.authorizationService.isAuthenticated();
+    ngOnInit() {}
+
+    isLogin(): boolean {
+        return this.authorizationService.isAuthenticated();
     }
 
-    logout() {
+    getCurrentUser(): string {
+        return this.authorizationService.GetUserInfo();
+    }
+
+    logout(): void {
         this.authorizationService.logout();
     }
 }
