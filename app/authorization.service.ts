@@ -5,13 +5,15 @@ import {Injectable} from '@angular/core';
 export class AuthorizationService {
     currentUser: any;
 
-    constructor() {}
+    constructor() {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
     login(name: string, password: string): void {
         this.currentUser = {name, password};
 
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-        console.log(`current user ${this.currentUser}`);
+        console.log('current user', this.currentUser);
     }
 
     logout(): void {

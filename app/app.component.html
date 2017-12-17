@@ -1,9 +1,11 @@
 <app-header></app-header>
-<app-search></app-search>
-<div class="courses">
-    <div class="courses-item" *ngFor="let course of courses">
-        <app-course (remove)="remove($event)" [course]="course"></app-course>
+<div class="courses-page" *ngIf="isLogin()">
+    <app-search></app-search>
+    <div class="courses">
+        <div class="courses-item" *ngFor="let course of courses">
+            <app-course (remove)="remove($event)" [course]="course"></app-course>
+        </div>
     </div>
 </div>
-<login-page></login-page>
+<login-page *ngIf="!isLogin()"></login-page>
 <app-footer></app-footer>
