@@ -1,6 +1,7 @@
 @import 'header/header.component.css';
 @import 'search/search.component.css';
 @import 'course/course.component.css';
+@import 'login/login.component.css';
 @import 'footer/footer.component.css';
 
 courses-page {
@@ -10,7 +11,7 @@ courses-page {
     width: 70%;
 }
 
-.courses {
+.courses-page {
     flex: 1;
 }
 
@@ -18,4 +19,17 @@ courses-page {
     cursor: pointer;
     font-size: 16px;
     padding: 8px;
+}
+
+.input {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    font-size: 18px;
 }

@@ -1,0 +1,13 @@
+<div class="form login-form">
+    <fieldset class="form-group">
+        <label class="label">
+            <span class="label-text">Login*</span>
+            <input class="input" [(ngModel)]="user.name" type="text" name="username" required />
+        </label>
+        <label class="label">
+            <span class="label-text">Password*</span>
+            <input class="input" [(ngModel)]="user.password" type="password" name="password" required />
+        </label>
+    </fieldset>
+    <button class="button" (click)="login()">Enter</button>
+</div>

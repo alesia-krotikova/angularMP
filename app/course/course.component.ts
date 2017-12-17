@@ -9,13 +9,13 @@ import {Course} from '../course';
 
 export class CourseComponent implements OnInit {
     @Input() course: Course;
-    @Output() change = new EventEmitter<string> ();
-
-    delete (id: string) {
-        this.change.emit(id);
-    }
+    @Output() remove = new EventEmitter<number> ();
 
     constructor() {}
+
+    deleteCourse(id: number) {
+        this.remove.emit(id);
+    }
 
     ngOnInit() {}
 }
