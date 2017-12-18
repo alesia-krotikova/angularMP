@@ -22,6 +22,10 @@ export class AppComponent {
         this.courses = this.courseService.getList();
     }
 
+    isEmptyCoursesList(): boolean {
+        return !this.courses.length;
+    }
+
     ngOnInit() {
         this.getCourses();
     }

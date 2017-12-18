@@ -11,10 +11,12 @@ import {FooterComponent} from "./footer/footer.component";
 import {CourseService} from './course.service'
 import {AuthorizationService} from "./authorization.service";
 import {LoginModule} from "./login/login.module";
+import {PaintBorderDirective} from './paint-border.directive';
+import {DurationInMinPipe} from './duration.pipe';
 
 @NgModule({
     imports:        [BrowserModule, CommonModule, FormsModule, LoginModule],
-    declarations:   [AppComponent, HeaderComponent, CourseComponent, SearchComponent, FooterComponent],
+    declarations:   [AppComponent, HeaderComponent, CourseComponent, SearchComponent, FooterComponent, PaintBorderDirective, DurationInMinPipe],
     providers:      [CourseService, AuthorizationService],
     bootstrap:      [AppComponent]
 })
