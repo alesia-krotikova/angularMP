@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="courses-page" *ngIf="isLogin()">
-    <app-search></app-search>
+    <app-search (find)="find($event)"></app-search>
     <div class="courses">
         <div class="courses-empty" *ngIf="isEmptyCoursesList()">
             <p class="p">No data. Feel free to add new course</p>
         </div>
-        <div [paintBorder]="course.creatingDate" class="courses-item" [ngClass]="{'top-rated': course.topRated}" *ngFor="let course of courses">
+        <div [paintBorder]="course.creatingDate" class="courses-item" [ngClass]="{'top-rated': course.topRated}" *ngFor="let course of courses | orderByDate">
             <app-course (remove)="remove($event)" [course]="course"></app-course>
         </div>
     </div>

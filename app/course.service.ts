@@ -5,7 +5,7 @@ import {COURSES} from './mock';
 @Injectable()
 
 export class CourseService {
-    constructor() { }
+    constructor() {}
 
     getList(): Course[] {
         return COURSES;

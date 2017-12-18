@@ -3,6 +3,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 @Pipe({name: 'durationInMin'})
 
 export class DurationInMinPipe implements PipeTransform {
+    constructor() {}
+
     transform(value: number): string {
         const HOUR = 60;
         let hours = Math.floor(value / HOUR),

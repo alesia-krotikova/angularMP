@@ -3,7 +3,7 @@ import {Course} from './course';
 export const COURSES: Course[] = [
     {
         id: 1,
-        title: 'Course #1',
+        title: 'webpack',
         topRated: false,
         creatingDate: '1513728000000',
         duration: '100',
@@ -11,7 +11,7 @@ export const COURSES: Course[] = [
     },
     {
         id: 2,
-        title: 'Course #2',
+        title: 'components',
         topRated: true,
         creatingDate: '1513296000000',
         duration: '43',
@@ -19,7 +19,7 @@ export const COURSES: Course[] = [
     },
     {
         id: 3,
-        title: 'Course #3',
+        title: 'directives',
         topRated: true,
         creatingDate: '1509667200000',
         duration: '128',
@@ -27,7 +27,7 @@ export const COURSES: Course[] = [
     },
     {
         id: 4,
-        title: 'Course #4',
+        title: 'services',
         topRated: false,
         creatingDate: '1515801600000',
         duration: '18',
