@@ -13,14 +13,14 @@ import {AuthorizationService} from "./authorization.service";
 import {LoginModule} from "./login/login.module";
 import {PaintBorderDirective} from './paint-border.directive';
 import {DurationInMinPipe} from './duration.pipe';
-import {OrderByDatePipe} from './order-by.pipe';
+import {OrderByPipe} from './order-by.pipe';
 import {FilterPipe} from './filter.pipe';
 
 @NgModule({
     imports:        [BrowserModule, CommonModule, FormsModule, LoginModule],
     declarations:   [AppComponent, HeaderComponent, CourseComponent,
         SearchComponent, FooterComponent, PaintBorderDirective,
-        DurationInMinPipe, OrderByDatePipe, FilterPipe],
+        DurationInMinPipe, OrderByPipe, FilterPipe],
     providers:      [CourseService, AuthorizationService],
     bootstrap:      [AppComponent]
 })

@@ -1,18 +1,15 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {Course} from './course'
+import * as _ from 'lodash/lodash';
 
 @Pipe({
-    name: 'orderByDate'
+    name: 'orderBy'
 })
 
-export class OrderByDatePipe implements PipeTransform {
+export class OrderByPipe implements PipeTransform {
     constructor() {}
 
-    transform(courses: Course[]): Course[]  {
-        courses.sort((a: any, b: any) => {
-            return (a.creatingDate - b.creatingDate);
-        });
-
-        return courses;
+    transform(courses: Course[], field: string): Course[]  {
+        return _.sortBy(courses, course => course[field]);
     }
 }

@@ -5,7 +5,10 @@
         <div class="courses-empty" *ngIf="isEmptyCoursesList()">
             <p class="p">No data. Feel free to add new course</p>
         </div>
-        <div [paintBorder]="course.creatingDate" class="courses-item" [ngClass]="{'top-rated': course.topRated}" *ngFor="let course of courses | orderByDate">
+        <div class="courses-item"
+             [ngClass]="{'top-rated': course.topRated}"
+             [paintBorder]="course.creatingDate"
+             *ngFor="let course of courses | orderBy: 'creatingDate'">
             <app-course (remove)="remove($event)" [course]="course"></app-course>
         </div>
     </div>
