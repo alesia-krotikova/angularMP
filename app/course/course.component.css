@@ -39,3 +39,8 @@ app-course {
     padding-left: 20px;
     justify-content: space-between;
 }
+
+.icon {
+    padding-left: 20px;
+    color: #d4d46b;
+}
