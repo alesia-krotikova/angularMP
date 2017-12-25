@@ -37,9 +37,10 @@ export class AppComponent {
         this.courses = this.filter.transform(this.courses, str);
     }
 
-    remove(id: number): void {
+    remove(course: Course): void {
         if (confirm('Do you really want to delete the course?')) {
-            this.courseService.removeItem(id);
+            this.courses = this.courses.filter(item => item !== course);
+            this.courseService.removeItem(course.id);
         }
     }
 }
