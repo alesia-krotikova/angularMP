@@ -1,17 +1,4 @@
 <app-header></app-header>
-<div class="courses-page" *ngIf="isLogin()">
-    <app-search (find)="find($event)"></app-search>
-    <div class="courses">
-        <div class="courses-empty" *ngIf="isEmptyCoursesList()">
-            <p class="p">No data. Feel free to add new course</p>
-        </div>
-        <div class="courses-item"
-             [ngClass]="{'top-rated': course.topRated}"
-             [paintBorder]="course.creatingDate"
-             *ngFor="let course of courses | orderBy: 'creatingDate'">
-            <app-course (remove)="remove($event)" [course]="course"></app-course>
-        </div>
-    </div>
-</div>
-<login-page *ngIf="!isLogin()"></login-page>
+<courses-page class="courses-page" *ngIf="isLogin()"></courses-page>
+<login-page class="login-page" *ngIf="!isLogin()"></login-page>
 <app-footer></app-footer>

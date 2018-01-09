@@ -3,19 +3,19 @@ import {Course} from '../course';
 
 @Component({
     selector: 'app-course',
-    templateUrl: '/app/course/course.component.html',
-    styleUrls: ['/app/course/course.component.css'],
+    templateUrl: './course.component.html',
+    styleUrls: ['./course.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CourseComponent implements OnInit {
     @Input() course: Course;
-    @Output() remove = new EventEmitter<number> ();
+    @Output() remove = new EventEmitter<Course> ();
 
     constructor() {}
 
-    deleteCourse(id: number) {
-        this.remove.emit(id);
+    deleteCourse(course: Course) {
+        this.remove.emit(course);
     }
 
     ngOnInit() {}

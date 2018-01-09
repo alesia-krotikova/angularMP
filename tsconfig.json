@@ -1,23 +1,33 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "baseUrl": "",
+    "target": "es6",
+    "module": "es2015",
     "moduleResolution": "node",
+    "declaration": true,
+    "noImplicitAny": false,
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": false,
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
-    "types": [
-      "core-js"
-    ]
+    "outDir": "./build",
+    "rootDir": "./app",
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": [
-    "node_modules"
-  ],
   "compileOnSave": false,
-  "buildOnSave": false
+  "buildOnSave": false,
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.ngfactory.ts",
+    "**/*.shim.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "genDir": "./",
+    "entryModule": "app/app.module#AppModule"
+  }
 }

@@ -1,7 +1,6 @@
 var config = require('./webpack.config'),
     webpack = require('webpack');
 
-config.output.filename = './dist/[name].bundle.min.js';
-config.plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
+config.stats = 'errors-only';
 
 module.exports = config;
