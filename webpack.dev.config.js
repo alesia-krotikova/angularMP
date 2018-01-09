@@ -1,8 +1,17 @@
-var config = require('./webpack.config'),
-    webpack = require('webpack');
+var config = require('./webpack.config');
 
-config.output.filename = './dist/[name].bundle.js';
+config.devServer = {
+    contentBase: './',
+        port: 3000,
+        inline: true,
+        historyApiFallback: true,
+        stats: 'errors-only',
+        watchOptions: {
+        aggregateTimeout: 300,
+            poll: 500
+    }
+};
+
 config.devtool = 'source-map';
-config.plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
 
 module.exports = config;

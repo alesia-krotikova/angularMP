@@ -1,62 +1,64 @@
-var webpack = require("webpack"),
-  path = require('path');
+'use strict';
 
-const ccpOptions = {
-  name: 'vendor',
-  filename: './dist/vendor.bundle.js'
-};
-
-function root(__path) {
-  return path.join(__dirname, __path);
-}
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    "vendor": "./app/vendor",
-    "app": "./app/main"
+    'main': './app/main.ts',
+    'vendor': './app/vendor.ts'
   },
+
   output: {
-    path: __dirname
+    path: path.join(process.cwd(), 'dist'),
+    filename: '[name].bundle.js'
   },
-  resolve: {
-    extensions: ['.ts', '.js'],
-    modules: [
-      path.resolve('./app'),
-      'node_modules'
-    ]
-  },
+
   module: {
     rules: [
       {
-        test: /\.ts/,
-        loader: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file-loader?name=assets/[name].[hash].[ext]'
+        test: /\.ts$/,
+        use: ['awesome-typescript-loader', 'angular2-template-loader']
       },
       {
         test: /\.html$/,
-        loader: 'raw-loader'
+        use: 'raw-loader'
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'}
+        include: path.resolve(process.cwd(), 'app'),
+        loaders: ['to-string-loader', 'css-loader']
+      },
+      {
+        test: /\.css$/,
+        exclude: path.resolve(process.cwd(), 'app'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      }
     ]
   },
+
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(ccpOptions),
-
+    new webpack.ProgressPlugin(),
     new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      root('./src'),
-      { }
+        /angular(\\|\/)core(\\|\/)@angular/,
+        path.join(process.cwd(), 'app')
     ),
+    new CopyWebpackPlugin([
+      {from: 'index.html'}
+    ]),
+    new ExtractTextPlugin('style.bundle.css')
+  ],
 
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    })
-  ]
+  resolve: {
+    modules: [
+      'node_modules',
+      path.resolve(process.cwd(), 'app')
+    ],
+    extensions: ['.ts', '.js']
+  }
 };

@@ -1,17 +1,8 @@
-@import 'header/header.component.css';
-@import 'search/search.component.css';
-@import 'course/course.component.css';
-@import 'login/login.component.css';
-@import 'footer/footer.component.css';
-
-courses-page {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    width: 70%;
+.courses-page {
+    flex: 1;
 }
 
-.courses-page {
+.login-page {
     flex: 1;
 }
 

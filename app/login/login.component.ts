@@ -3,8 +3,8 @@ import {AuthorizationService} from '../authorization.service'
 
 @Component({
     selector: 'login-page',
-    templateUrl: '/app/login/login.component.html',
-    styleUrls: ['/app/login/login.component.css']
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent {

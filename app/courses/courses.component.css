@@ -1,0 +1,25 @@
+.courses-page {
+    flex: 1;
+}
+
+.courses-empty {
+    border: 1px solid #9f9f9f;
+    margin: 10px 0;
+    padding: 20px;
+    text-align: center;
+    background: #dd03308f;
+}
+
+.app-course {
+    display: flex;
+}
+
+.courses-item {
+    border: 1px solid #9f9f9f;
+    margin: 10px 0;
+    padding: 20px;
+}
+
+.top-rated {
+    background: #ffff001f;
+}
