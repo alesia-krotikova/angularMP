@@ -1,0 +1,11 @@
+.add-form .input {
+    flex: 1;
+}
+
+.add-form .form-group {
+    justify-content: flex-end;
+}
+
+.add-form .button {
+    flex-basis: 180px;
+}

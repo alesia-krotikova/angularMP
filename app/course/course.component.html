@@ -5,7 +5,7 @@
             <i *ngIf="course.topRated" class="icon fa fa-star"></i>
         </h2>
         <span class="item-duration">{{course.duration | durationInMin}}</span>
-        <span class="item-date">{{course.creatingDate | date: "dd.MM.yy"}}</span>
+        <span class="item-date">{{course.date | date: "dd.MM.yy"}}</span>
     </div>
     <div class="content-description">
         <p class="description-text">{{course.description}}</p>

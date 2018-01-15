@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from './authorization.service'
+import {CourseService} from './course.service'
 import {FilterPipe} from './filter.pipe';
+import {Observable} from 'rxjs'
 
 @Component({
     selector: 'app',
@@ -10,9 +12,13 @@ import {FilterPipe} from './filter.pipe';
 })
 
 export class AppComponent {
-    constructor(private authorizationService: AuthorizationService) {}
+    constructor(private authorizationService: AuthorizationService, private courseService: CourseService) {}
 
     isLogin(): boolean {
         return this.authorizationService.isAuthenticated();
+    }
+
+    isAddCoursePage(): boolean {
+        return this.courseService.isCreatingCourse();
     }
 }

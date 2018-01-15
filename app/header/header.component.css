@@ -1,6 +1,7 @@
 .header {
     display: flex;
     flex-direction: row;
+    border-bottom: 4px solid #dd0330;
 }
 
 .header-logo {

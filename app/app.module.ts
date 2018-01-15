@@ -16,12 +16,13 @@ import {PaintBorderDirective} from './paint-border.directive';
 import {DurationInMinPipe} from './duration.pipe';
 import {OrderByPipe} from './order-by.pipe';
 import {FilterPipe} from './filter.pipe';
+import {AddCourseModule} from "./add-course/add-course.module";
+import {ShareModule} from "./share.module";
 
 @NgModule({
-    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule],
+    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule, ShareModule],
     declarations:   [AppComponent, HeaderComponent, CoursesComponent, CourseComponent,
-        SearchComponent, FooterComponent, PaintBorderDirective,
-        DurationInMinPipe, OrderByPipe, FilterPipe],
+        SearchComponent, FooterComponent, PaintBorderDirective, OrderByPipe, FilterPipe],
     providers:      [CourseService, AuthorizationService],
     bootstrap:      [AppComponent]
 })

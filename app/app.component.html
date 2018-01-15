@@ -1,4 +1,5 @@
 <app-header></app-header>
-<courses-page class="courses-page" *ngIf="isLogin()"></courses-page>
-<login-page class="login-page" *ngIf="!isLogin()"></login-page>
+<courses-page class="content" *ngIf="isLogin() && !isAddCoursePage()"></courses-page>
+<login-page class="content" *ngIf="!isLogin()"></login-page>
+<add-course-page class="content" *ngIf="isLogin() && isAddCoursePage()"></add-course-page>
 <app-footer></app-footer>
