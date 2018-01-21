@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs/Subscription';
 import {Course} from '../course'
 import {CourseService} from '../course.service'
 import {FilterPipe} from '../filter.pipe';
@@ -10,12 +11,16 @@ import {FilterPipe} from '../filter.pipe';
 })
 
 export class CoursesComponent {
+    subscription: Subscription;
     courses: Course[];
 
     constructor(private courseService: CourseService, private filter: FilterPipe) {}
 
     getCourses(): void {
-        this.courses = this.courseService.getList();
+        this.subscription = this.courseService.getList()
+            .subscribe(courses => {
+                this.courses = courses
+            });
     }
 
     isEmptyCoursesList(): boolean {
@@ -26,9 +31,17 @@ export class CoursesComponent {
         this.getCourses();
     }
 
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+
     find(str: string): void {
         this.getCourses();
         this.courses = this.filter.transform(this.courses, str);
+    }
+
+    add(bool: boolean): void {
+        this.courseService.createCourse();
     }
 
     remove(course: Course): void {
@@ -36,5 +49,6 @@ export class CoursesComponent {
             this.courses = this.courses.filter((item: Course) => item !== course);
             this.courseService.removeItem(course.id);
         }
+
     }
 }

@@ -1,8 +1,4 @@
-.courses-page {
-    flex: 1;
-}
-
-.login-page {
+.content {
     flex: 1;
 }
 
@@ -14,30 +10,6 @@
     background: #dd03308f;
 }
 
-.p {
-    font-size: 18px;
-    color: #fff;
-}
-
 .top-rated {
     background: #ffff001f;
-}
-
-.button {
-    cursor: pointer;
-    font-size: 16px;
-    padding: 8px;
-}
-
-.input {
-    font-size: 14px;
-    padding: 8px;
-}
-
-.label {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 5px 0;
-    font-size: 18px;
 }

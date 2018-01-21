@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorizationService} from "../authorization.service";
+import {Observable} from 'rxjs';
+import {AuthorizationService} from '../authorization.service';
 
 @Component({
     selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {}
 
-    isLogin(): boolean {
+    isLogin(): Observable<boolean> {
         return this.authorizationService.isAuthenticated();
     }
 

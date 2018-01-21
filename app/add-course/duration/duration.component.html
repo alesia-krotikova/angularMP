@@ -1,0 +1,4 @@
+<label class="label">
+    <span class="label-text">Duration</span>
+    <input class="input" [(ngModel)]="duration" type="text" name="duration" required /><span class="item-duration">{{duration ? (duration | durationInMin) : ""}}</span>
+</label>
