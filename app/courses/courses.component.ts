@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import 'rxjs/add/operator/takeWhile';
+import {Subscription} from 'rxjs/Subscription';
 import {Course} from '../course'
 import {CourseService} from '../course.service'
 import {FilterPipe} from '../filter.pipe';
@@ -11,14 +11,13 @@ import {FilterPipe} from '../filter.pipe';
 })
 
 export class CoursesComponent {
-    private alive: boolean = true;
+    subscription: Subscription;
     courses: Course[];
 
     constructor(private courseService: CourseService, private filter: FilterPipe) {}
 
     getCourses(): void {
-        this.courseService.getList()
-            .takeWhile(() => this.alive)
+        this.subscription = this.courseService.getList()
             .subscribe(courses => {
                 this.courses = courses
             });
@@ -33,7 +32,7 @@ export class CoursesComponent {
     }
 
     ngOnDestroy() {
-        this.alive = false;
+        this.subscription.unsubscribe();
     }
 
     find(str: string): void {
@@ -48,9 +47,7 @@ export class CoursesComponent {
     remove(course: Course): void {
         if (confirm('Do you really want to delete the course?')) {
             this.courses = this.courses.filter((item: Course) => item !== course);
-            this.courseService.removeItem(course.id)
-                .takeWhile(() => this.alive)
-                .subscribe();
+            this.courseService.removeItem(course.id);
         }
 
     }

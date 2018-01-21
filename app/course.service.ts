@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import {of} from 'rxjs/observable/of';
 import {Course} from './course';
 import {COURSES} from './mock';
@@ -7,11 +8,18 @@ import {COURSES} from './mock';
 @Injectable()
 
 export class CourseService {
+    subject: Subject<Course[]> = new Subject();
+    courses: Course[];
     isAddCoursePage: boolean;
-    constructor() {}
+
+    constructor() {
+        let periodOfFreshCourse = Date.now() - 24*60*60*1000*14;
+
+        this.courses = COURSES.filter((course) => +course.date >= periodOfFreshCourse);
+    }
 
     getList(): Observable<Course[]> {
-        return of(COURSES);
+        return of(this.courses);
     }
 
     createCourse(): void {
@@ -26,15 +34,14 @@ export class CourseService {
         return this.isAddCoursePage;
     }
 
-    removeItem(id: number): Observable<Course[]> {
-        COURSES.find((course, index) => {
+    removeItem(id: number): void {
+        this.courses.find((course, index) => {
             if (course.id === id) {
-                COURSES.splice(index, 1);
-
+                this.courses.splice(index, 1);
                 return true;
             }
         });
 
-        return of(COURSES);
+        this.subject.next(this.courses);
     }
 }

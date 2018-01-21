@@ -14,7 +14,7 @@ import {Observable} from 'rxjs'
 export class AppComponent {
     constructor(private authorizationService: AuthorizationService, private courseService: CourseService) {}
 
-    isLogin(): boolean {
+    isLogin(): Observable<boolean> {
         return this.authorizationService.isAuthenticated();
     }
 

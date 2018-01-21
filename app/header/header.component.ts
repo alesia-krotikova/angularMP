@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {}
 
-    isLogin(): boolean {
+    isLogin(): Observable<boolean> {
         return this.authorizationService.isAuthenticated();
     }
 
