@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {CoursesComponent} from './courses/courses.component';
@@ -20,7 +21,7 @@ import {AddCourseModule} from "./add-course/add-course.module";
 import {ShareModule} from "./share.module";
 
 @NgModule({
-    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule, ShareModule],
+    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule, HttpModule, ShareModule],
     declarations:   [AppComponent, HeaderComponent, CoursesComponent, CourseComponent,
         SearchComponent, FooterComponent, PaintBorderDirective, OrderByPipe, FilterPipe],
     providers:      [CourseService, AuthorizationService],

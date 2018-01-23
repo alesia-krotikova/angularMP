@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Observable} from 'rxjs';
+import {Subscription} from 'rxjs'
 import {AuthorizationService} from '../authorization.service';
 
 @Component({
@@ -9,22 +10,29 @@ import {AuthorizationService} from '../authorization.service';
 })
 
 export class HeaderComponent implements OnInit {
+    subscription: Subscription = new Subscription;
     logoPath: string;
     logoText: string;
+    userName: string;
 
     constructor(private authorizationService: AuthorizationService) {
         this.logoPath = '/images/logo.png';
         this.logoText = 'Angular Courses';
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.subscription = this.authorizationService.getUserInfo()
+            .subscribe(user => {
+                this.userName = user.name
+            });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 
     isLogin(): Observable<boolean> {
         return this.authorizationService.isAuthenticated();
-    }
-
-    getCurrentUser(): string {
-        return this.authorizationService.GetUserInfo();
     }
 
     logout(): void {

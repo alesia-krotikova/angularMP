@@ -1,7 +1,7 @@
-export interface Course {
+export class Course {
     id: number;
     title: string;
-    topRated: boolean,
+    topRated: boolean;
     date: string;
     duration: number;
     description: string
