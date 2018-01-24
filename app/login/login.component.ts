@@ -22,7 +22,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     login(): void {
         if (this.user.name && this.user.password) {
-            this.subscription = this.authorizationService.login(this.user.name, this.user.password).subscribe();
+            this.subscription = this.authorizationService.login(this.user.name, this.user.password)
+                .subscribe(res => {
+                    this.authorizationService.getUserInfo().subscribe();
+                });
         }
     }
 }

@@ -8,7 +8,6 @@ import {Course} from './course';
 @Injectable()
 
 export class CourseService {
-    subject: Subject<Course[]> = new Subject();
     baseURL: string;
     isAddCoursePage: boolean;
 
@@ -16,8 +15,8 @@ export class CourseService {
         this.baseURL = 'http://localhost:3004';
     }
 
-    getList(start: number, count: number): Observable<Course[]> {
-        let params: string = `?start=${start}&count=${count}`;
+    getList(start: number, count: number, query: string): Observable<Course[]> {
+        let params: string = query ? `?q=${query}` : `?start=${start}&count=${count}`;
 
         return this.http.get(`${this.baseURL}/courses${params}`)
             .map((res: Response) => res.json())
@@ -48,14 +47,10 @@ export class CourseService {
         return this.isAddCoursePage;
     }
 
-    removeItem(id: number): void {
-        //this.courses.find((course, index) => {
-        //    if (course.id === id) {
-        //        this.courses.splice(index, 1);
-        //        return true;
-        //    }
-        //});
-        //
-        //this.subject.next(this.courses);
+    removeItem(id: number): Observable<boolean> {
+        return this.http.delete(`${this.baseURL}/courses/${id}`)
+            .map((res: Response) => {
+                return true;
+            });
     }
 }
