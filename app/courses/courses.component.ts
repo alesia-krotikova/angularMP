@@ -12,15 +12,23 @@ import {FilterPipe} from '../filter.pipe';
 
 export class CoursesComponent {
     subscription: Subscription;
-    courses: Course[];
+    courses: Course[] = [];
+    portionCourses: number = 4;
 
     constructor(private courseService: CourseService, private filter: FilterPipe) {}
 
-    getCourses(): void {
-        this.subscription = this.courseService.getList()
+    getCourses(count: number): void {
+        let start = this.courses.length;
+
+        this.subscription = this.courseService.getList(start, count)
             .subscribe(courses => {
-                this.courses = courses
+                this.courses = this.courses.concat(courses);
             });
+    }
+
+    loadMore(): void {
+        console.log('load');
+        this.getCourses(this.portionCourses);
     }
 
     isEmptyCoursesList(): boolean {
@@ -28,7 +36,7 @@ export class CoursesComponent {
     }
 
     ngOnInit() {
-        this.getCourses();
+        this.getCourses(this.portionCourses);
     }
 
     ngOnDestroy() {
@@ -36,8 +44,8 @@ export class CoursesComponent {
     }
 
     find(str: string): void {
-        this.getCourses();
-        this.courses = this.filter.transform(this.courses, str);
+        //this.getCourses();
+        //this.courses = this.filter.transform(this.courses, str);
     }
 
     add(bool: boolean): void {
@@ -45,10 +53,9 @@ export class CoursesComponent {
     }
 
     remove(course: Course): void {
-        if (confirm('Do you really want to delete the course?')) {
-            this.courses = this.courses.filter((item: Course) => item !== course);
-            this.courseService.removeItem(course.id);
-        }
-
+        //if (confirm('Do you really want to delete the course?')) {
+        //    this.courses = this.courses.filter((item: Course) => item !== course);
+        //    this.courseService.removeItem(course.id);
+        //}
     }
 }

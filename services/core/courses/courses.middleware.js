@@ -6,7 +6,7 @@ module.exports = (server) => {
 
 	router.get('/courses', (req, res, next) => {
 		let url_parts = url.parse(req.originalUrl, true),
-			query = url_parts.query,
+			query = url_parts.query
 			from = query.start,
 			to = +query.start + +query.count,
 			sort = query.sort,
