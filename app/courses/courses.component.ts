@@ -12,15 +12,27 @@ import {FilterPipe} from '../filter.pipe';
 
 export class CoursesComponent {
     subscription: Subscription;
-    courses: Course[];
+    courses: Course[] = [];
+    isRemoved: boolean;
 
     constructor(private courseService: CourseService, private filter: FilterPipe) {}
 
     getCourses(): void {
-        this.subscription = this.courseService.getList()
+        const portionCourses: number = 4;
+        let coursesCount: number = this.courses.length,
+            start = this.isRemoved ? 0 : coursesCount,
+            count = this.isRemoved ? coursesCount : portionCourses;
+
+        this.subscription = this.courseService.getList(start, count, "")
             .subscribe(courses => {
-                this.courses = courses
+                console.log(courses);
+                this.courses = this.isRemoved ? courses : this.courses.concat(courses);
+                this.isRemoved = false;
             });
+    }
+
+    loadMore(): void {
+        this.getCourses();
     }
 
     isEmptyCoursesList(): boolean {
@@ -36,8 +48,10 @@ export class CoursesComponent {
     }
 
     find(str: string): void {
-        this.getCourses();
-        this.courses = this.filter.transform(this.courses, str);
+        this.courseService.getList(0, 0, str)
+            .subscribe(courses => {
+                this.courses = courses;
+            });
     }
 
     add(bool: boolean): void {
@@ -46,9 +60,11 @@ export class CoursesComponent {
 
     remove(course: Course): void {
         if (confirm('Do you really want to delete the course?')) {
-            this.courses = this.courses.filter((item: Course) => item !== course);
-            this.courseService.removeItem(course.id);
+            this.courseService.removeItem(course.id)
+                .subscribe(res => {
+                    this.isRemoved = true;
+                    this.getCourses();
+                });
         }
-
     }
 }

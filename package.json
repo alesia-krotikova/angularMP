@@ -8,7 +8,8 @@
     "ngc": "ngc",
     "start": "npm run prebuild && concurrently -r \"webpack-dev-server --config webpack.dev.config.js\" \"node ./ngc-watch.js\"",
     "start-prod": "npm run prebuild && webpack --config webpack.prod.config.js",
-    "prebuild": "npm run cleanup && npm run ngc"
+    "prebuild": "npm run cleanup && npm run ngc",
+    "start-server": "node index"
   },
   "license": "ISC",
   "dependencies": {
@@ -22,11 +23,14 @@
     "core-js": "2.5.1",
     "lodash": "4.17.4",
     "rxjs": "5.4.3",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "express": "^4.14.1",
+    "json-server": "^0.9.4"
   },
   "devDependencies": {
     "@angular/compiler-cli": "4.4.4",
     "@angular/forms": "4.4.4",
+    "@angular/http": "4.4.4",
     "@angular/platform-server": "4.4.4",
     "@types/core-js": "0.9.43",
     "@types/node": "8.0.33",

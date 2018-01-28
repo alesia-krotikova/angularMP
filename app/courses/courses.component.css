@@ -23,3 +23,8 @@
 .top-rated {
     background: #ffff001f;
 }
+
+.load-more {
+    width: 100%;
+    font-weight: 700;
+}

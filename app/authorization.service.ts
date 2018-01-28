@@ -1,28 +1,47 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable'
-import {BehaviorSubject} from 'rxjs/BehaviorSubject'
+import {Observable} from 'rxjs/Observable';
+import {Http, Headers, Response} from '@angular/http';
+import {RequestOptions} from '@angular/http';
+import 'rxjs/add/operator/map';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {User} from './user';
 
 @Injectable()
 
 export class AuthorizationService {
     isLoginSubject: BehaviorSubject<boolean>;
-    currentUser: any;
+    baseURL: string;
+    token: string;
+    user: User;
 
-    constructor() {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.isLoginSubject = new BehaviorSubject(!!this.currentUser);
+    constructor(private http: Http) {
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        this.token = currentUser && currentUser.token;
+        this.isLoginSubject = new BehaviorSubject(!!currentUser);
+        this.baseURL = 'http://localhost:3004';
+        this.user = new User();
     }
 
-    login(name: string, password: string): void {
-        this.currentUser = {name, password};
+    login(name: string, password: string): Observable<boolean> {
+        return this.http.post(`${this.baseURL}/auth/login`, {login: name, password: password})
+            .map((res: Response) => {
+                let response = res.json(),
+                    token = response.token;
 
-        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-        this.isLoginSubject.next(true);
+                if (token) {
+                    this.token = token;
+                    localStorage.setItem('currentUser', JSON.stringify({user: name, token: token}));
+                    this.isLoginSubject.next(true);
+
+                    return true;
+                }
+            });
     }
 
     logout(): void {
         localStorage.removeItem('currentUser');
-        this.currentUser = null;
+        this.token = null;
         this.isLoginSubject.next(false);
     }
 
@@ -30,7 +49,26 @@ export class AuthorizationService {
         return this.isLoginSubject.asObservable();
     }
 
-    GetUserInfo(): string {
-        return this.currentUser.name;
+    getUserInfo(): Observable<User> {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': this.token
+        }),
+            options = new RequestOptions({headers: headers});
+
+        return this.http.post(`${this.baseURL}/auth/userinfo`, {}, options)
+            .map(data => {
+                let userData = data.json();
+
+                if (userData) {
+                    this.user.id = userData.id;
+                    this.user.token = userData.fakeToken;
+                    this.user.name = `${userData.name.first} ${userData.name.last}`;
+                    this.user.login = userData.login;
+                    this.user.password = userData.password;
+
+                    return this.user;
+                }
+            });
     }
 }
