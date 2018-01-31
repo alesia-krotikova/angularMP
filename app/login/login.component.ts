@@ -1,4 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Validators, FormBuilder, FormControl} from '@angular/forms';
 import {AuthorizationService} from '../authorization.service';
 import {Subscription} from 'rxjs';
 
@@ -9,23 +10,23 @@ import {Subscription} from 'rxjs';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-    user: any = {};
     subscription: Subscription = new Subscription;
+    loginForm: any;
 
-    constructor(private authorizationService: AuthorizationService) {}
+    constructor(private authorizationService: AuthorizationService, private builder: FormBuilder) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.loginForm = this.builder.group({
+            name: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+    }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
 
     login(): void {
-        if (this.user.name && this.user.password) {
-            this.subscription = this.authorizationService.login(this.user.name, this.user.password)
-                .subscribe(res => {
-                    this.authorizationService.getUserInfo().subscribe();
-                });
-        }
+        this.subscription = this.authorizationService.login(this.loginForm.value).subscribe();
     }
 }

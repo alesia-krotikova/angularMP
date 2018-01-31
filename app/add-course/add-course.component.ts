@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from '../authorization.service'
+import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
     selector: 'add-course-page',
@@ -8,19 +9,26 @@ import {AuthorizationService} from '../authorization.service'
 })
 
 export class AddCourseComponent {
-    fields: any = {
-        title: "",
-        description: "",
-        date: "",
-        duration: ""
-    };
+    addForm: FormGroup;
 
-    constructor(private authorizationService: AuthorizationService) {}
+    constructor(private formBuilder: FormBuilder) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.addForm = this.formBuilder.group({
+            title: ['', [Validators.required, Validators.maxLength(50)]],
+            description: ['', [Validators.required, Validators.maxLength(500)]],
+            date: [Date.now()],
+            duration: 0,
+            authors: []
+        });
+    }
+
+    setFormMode(p) {
+        //this.formGroup.setValue(deepCopy(p));
+    }
 
     save(): void {
-        console.log(this.fields);
+        console.log(this.addForm.value);
     }
 
     cancel(): void {

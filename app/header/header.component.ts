@@ -21,10 +21,16 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.subscription = this.authorizationService.getUserInfo()
-            .subscribe(user => {
-                this.userName = user.name
-            });
+        this.subscription = this.isLogin().subscribe(res => {
+            if(res) {
+                this.authorizationService.getUserInfo()
+                    .subscribe(user => {
+                        this.userName = user.name
+                    });
+            }
+
+            return this.userName;
+        })
     }
 
     ngOnDestroy() {

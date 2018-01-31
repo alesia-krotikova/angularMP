@@ -1,13 +1,13 @@
-<div class="form login-form">
+<form class="form login-form" [formGroup]="loginForm" (ngSubmit)="login()">
     <fieldset class="form-group">
         <label class="label">
             <span class="label-text">Login*</span>
-            <input class="input" [(ngModel)]="user.name" type="text" name="username" required />
+            <input class="input" formControlName="name" type="text" name="username" required />
         </label>
         <label class="label">
             <span class="label-text">Password*</span>
-            <input class="input" [(ngModel)]="user.password" type="password" name="password" required />
+            <input class="input" formControlName="password" type="password" name="password" required />
         </label>
     </fieldset>
-    <button class="button" (click)="login()">Enter</button>
-</div>
+    <button type="submit" class="button" [disabled]="!loginForm.valid">Enter</button>
+</form>
