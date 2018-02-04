@@ -23,8 +23,8 @@ export class AuthorizationService {
         this.user = new User();
     }
 
-    login(name: string, password: string): Observable<boolean> {
-        return this.http.post(`${this.baseURL}/auth/login`, {login: name, password: password})
+    login(user: any): Observable<boolean> {
+        return this.http.post(`${this.baseURL}/auth/login`, {login: user.name, password: user.password})
             .map((res: Response) => {
                 let response = res.json(),
                     token = response.token;

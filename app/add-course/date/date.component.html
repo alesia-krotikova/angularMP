@@ -1,4 +1,4 @@
 <label class="label">
     <span class="label-text">Date</span>
-    <input class="input" [(ngModel)]="date" type="text" name="date" required />
+    <input class="input" [value]="data | date: 'dd.MM.yyyy'" type="text" (change)="onChange($event)" name="date" required />
 </label>

@@ -66,6 +66,7 @@ body {
 .input {
     font-size: 14px;
     padding: 8px;
+    border: 1px solid #a9a9a9;
 }
 
 .label {
@@ -79,4 +80,19 @@ body {
 .p {
     font-size: 18px;
     color: #fff;
+}
+
+.ng-invalid,
+.ng-invalid > .label .input {
+    border-color: #dd0330;
+}
+
+.error-message {
+    margin-left: 120px;
+    font-size: 12px;
+    color: #dd0330;
+}
+
+.error-message span {
+    color: #dd0330;
 }

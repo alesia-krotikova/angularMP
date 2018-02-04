@@ -3,7 +3,7 @@
         <img class="logo-img" alt={{logoText}} title={{logoText}} [src]="logoPath" />
         <h1 class="logo-heading">{{logoText| uppercase}}</h1>
     </a>
-    <div *ngIf="(isLogin() | async)" class="header-login">
+    <div *ngIf="isLogin()" class="header-login">
         <span class="login-user">{{userName}}</span>
         <a class="login-off" (click)="logout()" href="#">Logout</a>
     </div>
