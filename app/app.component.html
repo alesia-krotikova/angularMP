@@ -1,5 +1,3 @@
 <app-header></app-header>
-<courses-page class="content" *ngIf="(isLogin() | async) && !isAddCoursePage()"></courses-page>
-<login-page class="content" *ngIf="!(isLogin() | async)"></login-page>
-<add-course-page class="content" *ngIf="(isLogin() | async) && isAddCoursePage()"></add-course-page>
+<router-outlet></router-outlet>
 <app-footer></app-footer>

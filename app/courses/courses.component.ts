@@ -54,10 +54,6 @@ export class CoursesComponent {
             });
     }
 
-    add(bool: boolean): void {
-        this.courseService.createCourse();
-    }
-
     remove(course: Course): void {
         if (confirm('Do you really want to delete the course?')) {
             this.courseService.removeItem(course.id)

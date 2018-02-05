@@ -1,5 +1,5 @@
 <div class="search">
     <input class="input search-input" [(ngModel)]="courseName" placeholder="course name or data" />
     <button class="button search-find" (click)="findCourse(courseName)">Find course</button>
-    <button class="button search-add" (click)="addCourse()">Add course</button>
+    <button class="button search-add" routerLink="/courses/new">Add course</button>
 </div>

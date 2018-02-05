@@ -35,17 +35,9 @@ export class CourseService {
             }));
     }
 
-    createCourse(): void {
-        this.isAddCoursePage = true;
-    }
-
     getItemById(id: number): void {}
 
     updateItem(id: number): void {}
-
-    isCreatingCourse(): boolean {
-        return this.isAddCoursePage;
-    }
 
     removeItem(id: number): Observable<boolean> {
         return this.http.delete(`${this.baseURL}/courses/${id}`)

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from '../authorization.service'
 import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'add-course-page',
@@ -11,7 +12,8 @@ import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 export class AddCourseComponent {
     addForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: FormBuilder,
+                private router: Router) {}
 
     ngOnInit() {
         this.addForm = this.formBuilder.group({
@@ -32,6 +34,6 @@ export class AddCourseComponent {
     }
 
     cancel(): void {
-        console.log('cancel');
+        this.router.navigate(['/courses']);
     }
 }

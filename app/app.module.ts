@@ -19,12 +19,16 @@ import {OrderByPipe} from './order-by.pipe';
 import {FilterPipe} from './filter.pipe';
 import {AddCourseModule} from "./add-course/add-course.module";
 import {ShareModule} from "./share.module";
+import {NotFoundComponent} from "./not-found.component";
+
+import {RoutingModule}     from './routing.module';
+import {AuthGuard} from "./guards/auth-guard";
 
 @NgModule({
-    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule, HttpModule, ShareModule, ReactiveFormsModule],
+    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule, HttpModule, ShareModule, ReactiveFormsModule, RoutingModule],
     declarations:   [AppComponent, HeaderComponent, CoursesComponent, CourseComponent,
-        SearchComponent, FooterComponent, PaintBorderDirective, OrderByPipe, FilterPipe],
-    providers:      [CourseService, AuthorizationService],
+        SearchComponent, FooterComponent, PaintBorderDirective, OrderByPipe, FilterPipe, NotFoundComponent,],
+    providers:      [CourseService, AuthorizationService, AuthGuard],
     bootstrap:      [AppComponent]
 })
 

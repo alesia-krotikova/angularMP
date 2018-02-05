@@ -17,8 +17,4 @@ export class AppComponent {
     isLogin(): Observable<boolean> {
         return this.authorizationService.isAuthenticated();
     }
-
-    isAddCoursePage(): boolean {
-        return this.courseService.isCreatingCourse();
-    }
 }
