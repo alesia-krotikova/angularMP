@@ -1,0 +1,19 @@
+.label {
+    justify-content: flex-start;
+}
+
+.authors-block {
+    flex: 1;
+    border: 1px solid #a9a9a9;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    flex-wrap: wrap;
+}
+
+.author {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}

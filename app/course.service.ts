@@ -35,6 +35,11 @@ export class CourseService {
             }));
     }
 
+    getAuthorsList(): Observable<any[]> {
+        return this.http.get(`${this.baseURL}/authors`)
+            .map((res: Response) => res.json());
+    }
+
     getItemById(id: number): void {}
 
     updateItem(id: number): void {}

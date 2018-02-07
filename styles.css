@@ -31,11 +31,22 @@ body {
     justify-content: center;
 }
 
+.content {
+    flex-grow: 1;
+}
+
 .app {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     width: 70%;
+}
+
+.not-found {
+    height:220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form {
@@ -77,12 +88,21 @@ body {
     font-size: 18px;
 }
 
+.h--1{
+    font-size: 32px;
+    font-weight: 700;
+    color: #c30e2e;
+}
+
 .p {
     font-size: 18px;
     color: #fff;
 }
 
-.ng-invalid,
+.ng-invalid.ng-touched,
+.ng-invalid.ng-dirty,
+.ng-invalid.ng-touched .authors-block,
+.ng-invalid.ng-dirty .authors-block,
 .ng-invalid > .label .input {
     border-color: #dd0330;
 }

@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AuthorizationService} from '../authorization.service'
+import {CourseService} from '../course.service'
 import {FormBuilder, FormGroup, FormControl, Validators} from "@angular/forms";
 import {Router, ActivatedRoute} from "@angular/router";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'add-course-page',
@@ -11,11 +13,16 @@ import {Router, ActivatedRoute} from "@angular/router";
 
 export class AddCourseComponent {
     addForm: FormGroup;
+    authorsList: any;
+    subscription: Subscription;
 
     constructor(private formBuilder: FormBuilder,
-                private router: Router) {}
+                private router: Router,
+                private courseService: CourseService) {}
 
     ngOnInit() {
+        this.getAuthors();
+
         this.addForm = this.formBuilder.group({
             title: ['', [Validators.required, Validators.maxLength(50)]],
             description: ['', [Validators.required, Validators.maxLength(500)]],
@@ -23,6 +30,17 @@ export class AddCourseComponent {
             duration: 0,
             authors: []
         });
+    }
+
+    ngOnDestory() {
+        this.subscription.unsubscribe();
+    }
+
+    getAuthors() {
+        this.subscription = this.courseService.getAuthorsList()
+            .subscribe(authors => {
+                this.authorsList = authors;
+            });
     }
 
     setFormMode(p) {

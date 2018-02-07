@@ -1,0 +1,11 @@
+<div class="label">
+    <span class="label-text">Authors</span>
+    <div class="authors-block">
+        <label class="author" *ngFor="let author of data">
+            <span class="author-text">{{author.firstName}} {{author.lastName}}</span>
+            <input type="checkbox" (change)="onChange($event)" [value]="author.id">
+        </label>
+    </div>
+</div>
+
+
