@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-search',
@@ -8,15 +10,22 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 export class SearchComponent implements OnInit {
     @Output() find = new EventEmitter<string> ();
-    courseName: string;
+    searchBlock: FormControl;
 
     constructor() {
-        this.courseName = '';
+        this.searchBlock = new FormControl('', []);
     }
 
-    findCourse(str: string) {
-        this.find.emit(str);
+    findCourse() {
+        this.find.emit(this.searchBlock.value);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.searchBlock.valueChanges
+            .map((query: string) => query.trim())
+            .filter((query: string) => query && query.length > 4)
+            .debounce(() => Observable.timer(250))
+            .map((query: string) => this.find.emit(query))
+            .subscribe();
+    }
 }

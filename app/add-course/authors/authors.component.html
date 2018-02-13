@@ -3,7 +3,7 @@
     <div class="authors-block">
         <label class="author" *ngFor="let author of data">
             <span class="author-text">{{author.firstName}} {{author.lastName}}</span>
-            <input type="checkbox" (change)="onChange($event)" [value]="author.id">
+            <input type="checkbox" (change)="onChange($event)" [value]="author.id" [checked]="isChecked(author.id)">
         </label>
     </div>
 </div>

@@ -101,8 +101,8 @@ body {
 
 .ng-invalid.ng-touched,
 .ng-invalid.ng-dirty,
-.ng-invalid.ng-touched .authors-block,
-.ng-invalid.ng-dirty .authors-block,
+.ng-invalid.ng-touched > .label .authors-block,
+.ng-invalid.ng-dirty > .label .authors-block,
 .ng-invalid > .label .input {
     border-color: #dd0330;
 }

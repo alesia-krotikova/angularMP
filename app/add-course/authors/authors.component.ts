@@ -63,5 +63,9 @@ export class AuthorsComponent implements ControlValueAccessor, Validator {
 
     setDisabledState(isDisabled: boolean): void {}
 
+    isChecked(id: number) {
+        return this.authors.find(item => item.id === id);
+    }
+
     private propagateChange = (_: any) => { };
 }

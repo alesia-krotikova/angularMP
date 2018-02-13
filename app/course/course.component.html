@@ -12,6 +12,6 @@
     </div>
 </div>
 <div class="item-controls">
-    <button class="button course-edit" routerLink="/courses/{{course.id}}">Edit course</button>
+    <button class="button course-edit" on-click="editCourse(course.id)">Edit course</button>
     <button class="button course-delete" on-click="deleteCourse(course)">Delete course</button>
 </div>
