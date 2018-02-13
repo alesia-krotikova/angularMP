@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Subscription} from 'rxjs'
 import {AuthorizationService} from '../authorization.service';
+import {Store} from '@ngrx/store';
 
 @Component({
     selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
     logoText: string;
     userName: string;
 
-    constructor(private authorizationService: AuthorizationService) {
+    constructor(private authorizationService: AuthorizationService){
+                //private store: Store<any>) {
         this.logoPath = '/images/logo.png';
         this.logoText = 'Angular Courses';
     }

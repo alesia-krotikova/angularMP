@@ -22,10 +22,15 @@ import {ShareModule} from "./share.module";
 import {NotFoundComponent} from "./not-found.component";
 
 import {RoutingModule}     from './routing.module';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools'
+import {StoreModule} from '@ngrx/store'
+//import {loginReducer} from './reducers/login.reducer'
 import {AuthGuard} from "./guards/auth-guard";
 
 @NgModule({
-    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule, HttpModule, ShareModule, ReactiveFormsModule, RoutingModule],
+    imports:        [BrowserModule, CommonModule, FormsModule, LoginModule, AddCourseModule,
+        HttpModule, ShareModule, ReactiveFormsModule, RoutingModule],
+        //StoreModule.provideStore({login: loginReducer}), StoreDevtoolsModule.instrument()],
     declarations:   [AppComponent, HeaderComponent, CoursesComponent, CourseComponent,
         SearchComponent, FooterComponent, PaintBorderDirective, OrderByPipe, FilterPipe, NotFoundComponent,],
     providers:      [CourseService, AuthorizationService, AuthGuard],
