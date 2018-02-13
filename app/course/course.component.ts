@@ -11,11 +11,16 @@ import {Course} from '../course';
 export class CourseComponent implements OnInit {
     @Input() course: Course;
     @Output() remove = new EventEmitter<Course> ();
+    @Output() edit = new EventEmitter<number> ();
 
     constructor() {}
 
     deleteCourse(course: Course) {
         this.remove.emit(course);
+    }
+
+    editCourse(id: number) {
+        this.edit.emit(id);
     }
 
     ngOnInit() {}

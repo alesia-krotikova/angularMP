@@ -1,4 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Course} from '../course'
 import {CourseService} from '../course.service'
@@ -14,25 +15,33 @@ export class CoursesComponent {
     subscription: Subscription;
     courses: Course[] = [];
     isRemoved: boolean;
+    queryCourse: string = '';
+    fullList: number;
 
-    constructor(private courseService: CourseService, private filter: FilterPipe) {}
+    constructor(private courseService: CourseService,
+                private filter: FilterPipe,
+                private router: Router) {}
 
     getCourses(): void {
         const portionCourses: number = 4;
         let coursesCount: number = this.courses.length,
             start = this.isRemoved ? 0 : coursesCount,
-            count = this.isRemoved ? coursesCount : portionCourses;
+            count = this.isRemoved ? coursesCount || portionCourses : portionCourses;
 
-        this.subscription = this.courseService.getList(start, count, "")
-            .subscribe(courses => {
-                console.log(courses);
-                this.courses = this.isRemoved ? courses : this.courses.concat(courses);
+        this.subscription = this.courseService.getList(start, count, this.queryCourse)
+            .subscribe(list => {
+                this.courses = this.isRemoved ? list.courses : this.courses.concat(list.courses);
                 this.isRemoved = false;
+                this.fullList = list.size;
             });
     }
 
     loadMore(): void {
         this.getCourses();
+    }
+
+    isShowLoadMore(): boolean {
+        return (this.fullList === this.courses.length);
     }
 
     isEmptyCoursesList(): boolean {
@@ -48,14 +57,9 @@ export class CoursesComponent {
     }
 
     find(str: string): void {
-        this.courseService.getList(0, 0, str)
-            .subscribe(courses => {
-                this.courses = courses;
-            });
-    }
-
-    add(bool: boolean): void {
-        this.courseService.createCourse();
+        this.queryCourse = str;
+        this.isRemoved = true;
+        this.getCourses();
     }
 
     remove(course: Course): void {
@@ -66,5 +70,9 @@ export class CoursesComponent {
                     this.getCourses();
                 });
         }
+    }
+
+    edit(id: number): void {
+        this.router.navigate([`/courses/${id}`]);
     }
 }

@@ -1,4 +1,4 @@
-<app-search (find)="find($event)" (add)="add($event)"></app-search>
+<app-search (find)="find($event)"></app-search>
 <div class="courses">
     <div class="courses-empty" *ngIf="isEmptyCoursesList()">
         <p class="p">No data. Feel free to add new course</p>
@@ -7,7 +7,7 @@
          [ngClass]="{'top-rated': course.topRated}"
          [paintBorder]="course.date"
          *ngFor="let course of courses | orderBy: 'date'">
-        <app-course class="app-course" (remove)="remove($event)" [course]="course"></app-course>
+        <app-course class="app-course" (remove)="remove($event)" (edit)="edit($event)"  [course]="course"></app-course>
     </div>
-    <button class="button load-more" on-click="loadMore()" *ngIf="!isEmptyCoursesList()">Show more courses</button>
+    <button class="button load-more" on-click="loadMore()" *ngIf="!isShowLoadMore() && !isEmptyCoursesList()">Show more courses</button>
 </div>

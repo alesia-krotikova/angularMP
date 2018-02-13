@@ -32,9 +32,13 @@
         <span *ngIf="addForm.controls.duration.invalid && (addForm.controls.duration.dirty || addForm.controls.duration.touched)" class="error-message">
             Duration is required
         </span>
+        <authors formControlName="authors" [data]="authorsList"></authors>
+        <span *ngIf="addForm.controls.authors.invalid && (addForm.controls.authors.dirty || addForm.controls.authors.touched)" class="error-message">
+            Minimum one author should be selected
+        </span>
     </fieldset>
     <div class="form-group">
-        <button class="button" type="submit" [disabled]="!addForm.valid" (click)="save()">Save</button>
+        <button class="button" [disabled]="!addForm.valid">Save</button>
         <button class="button" (click)="cancel()">Cancel</button>
     </div>
 </form>
