@@ -11,21 +11,24 @@ import {Store} from '@ngrx/store';
 })
 
 export class HeaderComponent implements OnInit {
+    login: Observable<any>;
+    authorized: boolean = false;
     subscription: Subscription = new Subscription;
     logoPath: string;
     logoText: string;
     userName: string;
 
-    constructor(private authorizationService: AuthorizationService){
-                //private store: Store<any>) {
+    constructor(private authorizationService: AuthorizationService, private store: Store<any>) {
+        this.login = store.select('login');
+        this.login.subscribe(state => this.authorized = state.authorized);
         this.logoPath = '/images/logo.png';
         this.logoText = 'Angular Courses';
     }
 
     ngOnInit() {
-        this.subscription = this.isLogin().subscribe(res => {
+        this.subscription = this.login.subscribe(res => {
             if(res) {
-                this.authorizationService.getUserInfo()
+                this.subscription = this.authorizationService.getUserInfo()
                     .subscribe(user => {
                         this.userName = user.name
                     });
@@ -37,10 +40,6 @@ export class HeaderComponent implements OnInit {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
-    }
-
-    isLogin(): Observable<boolean> {
-        return this.authorizationService.isAuthenticated();
     }
 
     logout(): void {

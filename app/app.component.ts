@@ -3,6 +3,7 @@ import {AuthorizationService} from './authorization.service'
 import {CourseService} from './course.service'
 import {FilterPipe} from './filter.pipe';
 import {Observable} from 'rxjs'
+import {Store} from '@ngrx/store';
 
 @Component({
     selector: 'app',
@@ -12,9 +13,17 @@ import {Observable} from 'rxjs'
 })
 
 export class AppComponent {
-    constructor(private authorizationService: AuthorizationService, private courseService: CourseService) {}
+    private login: Observable<any>;
+    private authorized: boolean = false;
 
-    isLogin(): Observable<boolean> {
-        return this.authorizationService.isAuthenticated();
+    constructor(private authorizationService: AuthorizationService,
+                private courseService: CourseService,
+                private store: Store<any>) {
+        this.login = store.select('login');
+        this.login.subscribe(state => this.authorized = state.authorized);
+    }
+
+    isLogin(): boolean {
+        return this.authorized;
     }
 }

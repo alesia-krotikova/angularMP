@@ -1,15 +1,24 @@
-//import {ActionReducer, Action, State} from '@ngrx/store';
-//
-//export const LOGIN = 'login';
-//export const LOGOUT = 'logout';
-//
-//export const loginReducer: ActionReducer<boolean, Action> = (state = false, action: Action) => {
-//    switch (action.type) {
-//        case LOGIN:
-//            return true;
-//        case LOGOUT:
-//            return false;
-//        default:
-//            return state;
-//    }
-//};
+import {Action} from '@ngrx/store';
+
+export interface State {
+    authorized: boolean;
+}
+
+const initialState: State = {
+    authorized: !!JSON.parse(localStorage.getItem('currentUser'))
+};
+
+export function reducer(state: State = initialState, action: Action): State {
+    switch(action.type){
+        case 'login': {
+            return {authorized: true};
+        }
+
+        case 'logout': {
+            return {authorized: false};
+        }
+
+        default:
+            return state;
+    }
+}
