@@ -12,6 +12,7 @@ export class AuthorizationService {
     baseURL: string;
     token: string;
     user: User;
+    isLogin: Observable<any>;
 
     constructor(private http: Http, private store: Store<any>) {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -19,6 +20,7 @@ export class AuthorizationService {
         this.token = currentUser && currentUser.token;
         this.baseURL = 'http://localhost:3004';
         this.user = new User();
+        this.isLogin = store.select('login');
     }
 
     login(user: any): Observable<boolean> {
